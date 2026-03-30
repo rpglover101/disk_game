@@ -1,6 +1,7 @@
 class_name Slammer
 extends Disk
 #test change
+#chagne gitignore
 var is_dragging: bool = false
 var flick_power: int = 200
 var drag_distance: float = 0
