@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://bh1kvbot5to2"]
+
+[ext_resource type="Script" uid="uid://bmvoc7gvlp8r" path="res://assets/debug/label.gd" id="3_p57ef"]
+[ext_resource type="Script" uid="uid://cww6wwjc2vcn7" path="res://assets/game_controller.gd" id="4_u5sy4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_feb5d"]
+bounce = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mwb40"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fc0e3"]
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7jktm"]
+bounce = 1.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ryrav"]
+bounce = 1.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GameController" type="Node2D" parent="."]
+script = ExtResource("4_u5sy4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WorldBounds" type="Node2D" parent="."]
+
+[node name="top" type="StaticBody2D" parent="WorldBounds"]
+position = Vector2(0, -262)
+rotation = -3.1415925
+physics_material_override = SubResource("PhysicsMaterial_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/top"]
+scale = Vector2(5.0000005, 1)
+shape = SubResource("WorldBoundaryShape2D_mwb40")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="left" type="StaticBody2D" parent="WorldBounds"]
+position = Vector2(-451, 0)
+rotation = 1.5707964
+physics_material_override = SubResource("PhysicsMaterial_fc0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/left"]
+scale = Vector2(3.6000013, 1)
+shape = SubResource("WorldBoundaryShape2D_mwb40")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="right" type="StaticBody2D" parent="WorldBounds"]
+position = Vector2(373, -2)
+rotation = -1.5707964
+physics_material_override = SubResource("PhysicsMaterial_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/right"]
+scale = Vector2(3.6, 1)
+shape = SubResource("WorldBoundaryShape2D_mwb40")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="bottom" type="StaticBody2D" parent="WorldBounds"]
+position = Vector2(-1, 269)
+scale = Vector2(4.999999, 1)
+physics_material_override = SubResource("PhysicsMaterial_ryrav")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/bottom"]
+shape = SubResource("WorldBoundaryShape2D_mwb40")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasGroup"]
+
+[node name="Label" type="RichTextLabel" parent="CanvasGroup" node_paths=PackedStringArray("game_controller")]
+clip_contents = false
+custom_minimum_size = Vector2(393.645, 52.98)
+offset_left = -443.0
+offset_top = -255.0
+offset_right = -49.35501
+offset_bottom = -202.02
+fit_content = true
+scroll_active = false
+script = ExtResource("3_p57ef")
+game_controller = NodePath("../../GameController")
+
+[node name="Debug" type="RichTextLabel" parent="CanvasGroup"]
+offset_right = 40.0
+offset_bottom = 40.0

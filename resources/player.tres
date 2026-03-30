@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://btjvdxey60xll"]
+
+[sub_resource type="GDScript" id="GDScript_uhc6k"]
+script/source = "class_name PlayerStats
+extends Resource
+
+"
+
+[resource]
+script = SubResource("GDScript_uhc6k")

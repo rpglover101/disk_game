@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://bh1kvbot5to2"]
+
+[ext_resource type="PackedScene" uid="uid://csbqk3l3b13km" path="res://disk_2.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bmvoc7gvlp8r" path="res://label.gd" id="2_e2o6t"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mwb40"]
+
+[sub_resource type="Gradient" id="Gradient_80nbo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e2o6t"]
+gradient = SubResource("Gradient_80nbo")
+
+[sub_resource type="Gradient" id="Gradient_7q7vv"]
+offsets = PackedFloat32Array(0.7, 0.7266667, 0.97333336)
+colors = PackedColorArray(1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_80nbo"]
+gradient = SubResource("Gradient_7q7vv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e2o6t"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WorldBounds" type="Node2D" parent="."]
+
+[node name="top" type="StaticBody2D" parent="WorldBounds"]
+position = Vector2(0, -262)
+rotation = -3.1415925
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/top"]
+shape = SubResource("WorldBoundaryShape2D_mwb40")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldBounds/top"]
+texture = SubResource("GradientTexture1D_e2o6t")
+
+[node name="left" type="StaticBody2D" parent="WorldBounds"]
+position = Vector2(-451, 0)
+rotation = 1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/left"]
+shape = SubResource("WorldBoundaryShape2D_mwb40")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldBounds/left"]
+texture = SubResource("GradientTexture1D_e2o6t")
+
+[node name="right" type="StaticBody2D" parent="WorldBounds"]
+position = Vector2(373, -2)
+rotation = -1.5707964
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/right"]
+shape = SubResource("WorldBoundaryShape2D_mwb40")
+debug_color = Color(0, 0, 0, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldBounds/right"]
+texture = SubResource("GradientTexture1D_e2o6t")
+
+[node name="bottom" type="StaticBody2D" parent="WorldBounds"]
+position = Vector2(-1, 269)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/bottom"]
+shape = SubResource("WorldBoundaryShape2D_mwb40")
+debug_color = Color(0, 0, 0, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="WorldBounds/bottom"]
+texture = SubResource("GradientTexture1D_e2o6t")
+
+[node name="Disk2" parent="." instance=ExtResource("1_80nbo")]
+
+[node name="target" type="RigidBody2D" parent="."]
+position = Vector2(226, -107)
+mass = 0.155
+gravity_scale = 0.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="target"]
+texture = SubResource("GradientTexture2D_80nbo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="target"]
+scale = Vector2(3.22, 3.22)
+shape = SubResource("CircleShape2D_e2o6t")
+debug_color = Color(0.8431839, 0.8431839, 0.84318376, 0.41960785)
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasGroup"]
+
+[node name="Label" type="RichTextLabel" parent="CanvasGroup" node_paths=PackedStringArray("player_disc")]
+offset_left = -364.0
+offset_top = -199.0
+offset_right = -308.0
+offset_bottom = -176.0
+text = "Speed: "
+script = ExtResource("2_e2o6t")
+player_disc = NodePath("../../Disk2")

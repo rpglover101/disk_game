@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b55ijay5royj3"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://6aach0lc7n4m" path="res://resources/default_disk_material.tres" id="1_5qctg"]
+[ext_resource type="Script" uid="uid://in033idbaarv" path="res://assets/disks/disk.gd" id="1_juw4j"]
+[ext_resource type="Texture2D" uid="uid://nd3snk4posn6" path="res://assets/disks/disk.png" id="3_vv48o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bdflp"]
+radius = 33.0
+
+[node name="Disk" type="RigidBody2D" groups=["disk"]]
+input_pickable = true
+physics_material_override = ExtResource("1_5qctg")
+gravity_scale = 0.0
+linear_damp = 0.75
+script = ExtResource("1_juw4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_vv48o")
+
+[node name="HitBox" type="CollisionShape2D" parent="." groups=["disk"]]
+shape = SubResource("CircleShape2D_bdflp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
